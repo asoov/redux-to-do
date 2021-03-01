@@ -12,12 +12,14 @@ const LayoutWrapper = styled('div')({
 })
 
 function App() {
+
   return (
     <LayoutWrapper>
-      <Header />
+      
       <BrowserRouter>
         <Switch>
           <Route exact path='/'>
+            <Header />
             <div>This is the Start!</div>
           </Route>
           <Route exact path='/todo'>

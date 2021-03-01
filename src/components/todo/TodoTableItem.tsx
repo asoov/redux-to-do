@@ -13,6 +13,14 @@ const TableCellInline = styled(TableCell)({
   display: 'flex'
 })
 
+const StyledInput = styled(Input)({
+  width: '100%'
+})
+
+const StretchCell = styled(TableCell)({
+  width: '100%'
+})
+
 
 export const TodoTableItem: React.FC<TodoTableItemProps> = ({todo}) => {
   const dispatch = useDispatch()
@@ -31,12 +39,13 @@ export const TodoTableItem: React.FC<TodoTableItemProps> = ({todo}) => {
           onChange={() => dispatch(markTodoResolved(todo))}
         />
       </TableCell>
-      <TableCell>
+      <StretchCell>
         {isEdit ? (
-          <Input
+          <StyledInput
             type='text'
             value={fieldValue}
             onChange={event => setFieldValue(event.target.value)}
+            onKeyUp={event => event.code === 'Enter' && handleSave()}
             endAdornment={
               <InputAdornment position='end'>
                 <IconButton onClick={() => handleSave()}>
@@ -45,20 +54,15 @@ export const TodoTableItem: React.FC<TodoTableItemProps> = ({todo}) => {
               </InputAdornment>
             }
           />
-          // <TextField 
-          //   value={fieldValue} 
-          //   onChange={event => setFieldValue(event.target.value)}
-          //   InputProps={{
-          //     startAdornment: Adornment
-          //   }}
-          //  />
           ) : (
-          todo.title
+            <p onClick={() => setIsEdit(!isEdit)}>
+              {todo.title}
+            </p>
         )
         }
-      </TableCell>
+      </StretchCell>
       <TableCellInline>
-        <IconButton onClick={() => setIsEdit(true)}>
+        <IconButton onClick={() => setIsEdit(!isEdit)}>
           <Edit />
         </IconButton>
         <IconButton onClick={() => dispatch(deleteTodo(todo))}>

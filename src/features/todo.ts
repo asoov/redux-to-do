@@ -12,6 +12,7 @@ const todo = createSlice({
     initialState: initialState,
     reducers: {
       addTodo: (state, action) => {
+        console.log(action.payload)
         state.todos = [
           action.payload,
           ...state.todos
@@ -60,9 +61,10 @@ export const fetchTodos = (amount:number = 10) => async (dispatch: Dispatch) => 
 }
 
 export const addSingleTodo = (todo: TodoItem) => async (dispatch: Dispatch) => {
+  console.log(todo)
   try {
-    const { data } = await axios.post('https://jsonplaceholder.typicode.com/todos', todo)
-    dispatch(addTodo(data))
+    await axios.post('https://jsonplaceholder.typicode.com/todos', todo)
+    dispatch(addTodo(todo))
   }
   catch(error) {
     console.log(error)

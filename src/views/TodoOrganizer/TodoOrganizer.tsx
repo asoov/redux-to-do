@@ -1,5 +1,6 @@
 import { Container, styled } from "@material-ui/core"
 import React from "react"
+import { Header } from "../../components/header/Header"
 import { TodoInput } from "../../components/todo/TodoInput"
 import { TodoOverview } from "../../components/todo/TodoOverview"
 
@@ -12,9 +13,12 @@ const TodoLayout = styled(Container)({
 export const TodoOrganizer: React.FC = () => {
   
   return (
-    <TodoLayout>
-      <TodoInput />
-      <TodoOverview />
-    </TodoLayout>
+    <>
+      <Header />
+      <TodoLayout>
+        <TodoInput />
+        <TodoOverview />
+      </TodoLayout>
+    </>
   )
 }

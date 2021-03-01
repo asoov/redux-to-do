@@ -26,8 +26,24 @@ export const TodoInput: React.FC = () => {
   }
   return (
     <InputWrapper>
-      <InputField label='Add Todo' onChange={(event => setInput(event.target.value))} /> 
-      <Button variant='contained' disabled={!input.length} color='primary' onClick={() => dispatch(addSingleTodo(newTodo))}>Add Todo</Button>
+      <InputField 
+        label='Add Todo' 
+        value={input}
+        onChange={event => setInput(event.target.value)} 
+        onKeyDown={event => {
+          event.code === 'Enter' && dispatch(addSingleTodo(newTodo)) && setInput('')
+        }}
+      /> 
+      <Button 
+        variant='contained' 
+        disabled={!input.length} 
+        color='primary' 
+        onClick={() => {
+          dispatch(addSingleTodo(newTodo))
+          setInput('')
+        }}>
+        Add Todo
+      </Button>
     </InputWrapper>
   )
 } 

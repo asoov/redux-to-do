@@ -4,10 +4,20 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Button
+  Button,
+  styled
 } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu'
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
+import { Link } from "react-router-dom";
+
+const StyledLink = styled(Link)({
+  color: '#fff',
+  textDecoration: 'none',
+  '&:hover': {
+    color: 'grey'
+  }
+})
 
 export const Header: React.FC = (): ReactElement => {
   return (
@@ -21,7 +31,9 @@ export const Header: React.FC = (): ReactElement => {
             <Typography variant="h6">
               Frontend Café
             </Typography>
-            <Button color="inherit">Todo-App</Button>
+            <StyledLink to='/todo'>
+              <Button color="inherit">Todo-App</Button>
+            </StyledLink>
           </Toolbar>
         </AppBar>
       </Grid>
